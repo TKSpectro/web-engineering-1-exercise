@@ -18,10 +18,10 @@ namespace E01_student_mvc.Controllers
 
         public IActionResult Details(Guid id)
         {
-            Student student = Students.First(s => s.Id == id);
+            Student? student = Students.FirstOrDefault(s => s.Id == id);
             if (student == null)
             {
-                return NotFound();
+                return NotFound("Student not found");
             }
 
             if (!student.Visible)
@@ -37,10 +37,10 @@ namespace E01_student_mvc.Controllers
 
         public IActionResult Forbidden(Guid id)
         {
-            Student student = Students.First(s => s.Id == id);
+            Student? student = Students.FirstOrDefault(s => s.Id == id);
             if (student == null)
             {
-                return NotFound();
+                return NotFound("Student not found");
             }
 
             ViewBag.Title = $"Student Forbidden - {student.Firstname} {student.Lastname}";
