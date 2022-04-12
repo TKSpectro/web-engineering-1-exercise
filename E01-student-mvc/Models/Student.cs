@@ -17,5 +17,7 @@ namespace E01_student_mvc.Models
         public int Semester { get; set; }
 
         public DateOnly ExpectedGraduation { get; set; }
+
+        public bool Visible { get; set; }
     }
 }
