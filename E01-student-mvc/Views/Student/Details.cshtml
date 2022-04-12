@@ -1,0 +1,68 @@
+@model Student
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Firstname
+        </dt>
+
+        <dd>
+            @Model.Firstname
+        </dd>
+
+        <dt>
+            Lastname
+        </dt>
+
+        <dd>
+            @Model.Lastname
+        </dd>
+
+        <dt>
+            Student Number
+        </dt>
+
+        <dd>
+            @(Model.StudentNumber)
+        </dd>
+
+        <dt>
+            Course
+        </dt>
+
+        <dd>
+            @Model.Course
+        </dd>
+
+        <dt>
+            Specialization
+        </dt>
+
+        <dd>
+            @Model.Specialization
+        </dd>
+
+        <dt>
+            Semester
+        </dt>
+
+        <dd>
+            @Model.Semester
+        </dd>
+
+         <dt>
+            Expected Graduation Date
+        </dt>
+
+        <dd>
+            @Model.ExpectedGraduation.ToShortDateString()
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "List")
+</p>
