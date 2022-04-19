@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <form id="form1" >
+        <div>
+            <label for="status">name</label>
+            <input type="text" name="name" value="tom" />
+        </div>
+        <div>
+            <label for="status">email</label>
+            <input type="text" name="email" value="tom@mail.com"/>
+        </div>
+        <div>
+            <label for="status">password</label>
+            <input type="password" name="password" value="123123123" />
+        </div>
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+<script type="text/javascript">
+    $("#form1").submit(function () {
+        console.log("submit");
+        var jqxhr = $.post('api/accounts', $('#form1').serialize())
+            .success(function () {
+                var loc = jqxhr.getResponseHeader('Location');
+                var a = $('<a/>', { href: loc, text: loc });
+                console.log(a)
+                @* $('#message').html(a); *@
+            })
+            .error(function () {
+                console.log
+                @* $('#message').html("Error posting the update."); *@
+            });
+        return false;
+    });
+</script>
