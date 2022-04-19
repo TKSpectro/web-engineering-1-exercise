@@ -1,4 +1,3 @@
-using E02_contact_form;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;

@@ -1,4 +1,3 @@
-namespace E02_contact_form
-{
-    public class SharedResource { }
-}
+// TODO: If i add this through the namespace the basePath will be wrong
+public class SharedResource { }
+

@@ -30,12 +30,13 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    public IActionResult SetLang(string lang)
+    public IActionResult SetLang(string lang, string url)
     {
         Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang))
         );
-        return View("Index");
+
+        return LocalRedirect(url);
     }
 }

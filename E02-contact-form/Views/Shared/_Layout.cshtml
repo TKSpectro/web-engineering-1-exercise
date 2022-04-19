@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http.Extensions
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,10 +30,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SetLang" asp-route-lang="de">Deutsch</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SetLang" asp-route-lang="de" asp-route-url="@Context.Request.Path">Deutsch</a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SetLang" asp-route-lang="en">Englisch</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SetLang" asp-route-lang="en" asp-route-url="@Context.Request.Path">Englisch</a>
                         </li>
                     </ul>
                 </div>
