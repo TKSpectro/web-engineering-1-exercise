@@ -1,5 +1,15 @@
 @model ContactForm
 
+@if (@ViewBag.SentMail){
+<div class="alert alert-success" role="alert">
+  Email was sent successfully.
+</div>
+}else{
+<div class="alert alert-danger" role="alert">
+  Email was not sent.
+</div>
+}
+
 <div>
     <h4>Details - ContactForm</h4>
     <hr />
