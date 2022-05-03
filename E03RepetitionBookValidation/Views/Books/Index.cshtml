@@ -1,0 +1,61 @@
+@model Book
+
+<h2>Create book</h2>
+
+@using(Html.BeginForm()){
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="Title">Title</label>    
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Author">Author</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Author, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ISBN">ISBN</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ISBN, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Year">Year</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Year, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Publication">Publication</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Publication, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Publication, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="mt-2 btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
