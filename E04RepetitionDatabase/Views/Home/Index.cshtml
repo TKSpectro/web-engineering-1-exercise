@@ -1,0 +1,58 @@
+﻿@model IEnumerable<E04RepetitionDatabase.Models.Note>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script>
+function removeNoteById(id) {
+    $.ajax({
+        url: `/Home/Delete`,
+        type: 'DELETE',
+        data: {
+            noteId: id,
+        },
+
+        success: function (result) {
+            window.location.reload();
+        },
+    });
+}
+</script>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <a href="/home/create">Create Note</a>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var note in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => note.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => note.Text)
+                </td>
+                <td>
+                    <button onclick="removeNoteById('@note.Id')">Remove</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
