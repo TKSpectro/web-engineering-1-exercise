@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "List Books";
+}
+
+<div id="detailsContent" class="container">
+
+</div>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+
+    @foreach (var book in Model)
+    {
+        <tr id="book-@book.Id">
+            <td>@book.Name</td>
+            <td><button class="btn btn-primary details-button" data-id="@book.Id">Details</button></td>
+        </tr>
+    }
+</table>
+
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(".details-button").click(function () {
+            const id = $(this).data("id")
+            $.ajax({
+                url: "/home/details/" + id,
+                method: "GET",
+                success: function (result) {
+                    $("#detailsContent").html(result);
+                    
+                }
+            });
+            $(".details-button").closest("tr").removeClass("border border-primary");
+            
+            $(this).closest("tr").addClass("border border-primary");
+        });
+    </script>
+}
