@@ -2,10 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using E06RepetitionGrpc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using E06RepetitionRest.Models;
+using Grpc.Net.Client;
+using Newtonsoft.Json;
+using Module = E06RepetitionRest.Models.Module;
 
 namespace E06RepetitionRest.Controllers
 {
@@ -118,6 +122,21 @@ namespace E06RepetitionRest.Controllers
         private bool ModuleExists(Guid id)
         {
             return (_context.Modules?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+        
+        [HttpGet]
+        [Route("grpc")]
+        public async Task<ActionResult> GrpcExample()
+        {
+            using(var channel = GrpcChannel.ForAddress("http://localhost:5034"))
+            {
+                var client = new Moduler.ModulerClient(channel);
+                var response = client.GetModules(new Google.Protobuf.WellKnownTypes.Empty());
+                
+                Console.WriteLine("test");
+                // return new ContentResult { Content = JsonSerializer.Serialize(response.Modules), ContentType = "application/json" };
+                return null;
+            }
         }
     }
 }

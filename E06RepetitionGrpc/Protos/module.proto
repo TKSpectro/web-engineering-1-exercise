@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "E06RepetitionGrpc";
+
+package module;
+
+import "google/protobuf/empty.proto";
+
+service Moduler {
+  rpc AddModule (Module) returns (google.protobuf.Empty);
+  rpc GetModules (google.protobuf.Empty) returns (ModuleList);
+  rpc DeleteModule (Module) returns (google.protobuf.Empty);
+  rpc UpdateModule (Module) returns (google.protobuf.Empty);
+}
+
+message Module {
+	optional string id = 1;
+	string name = 2;
+	int32 cp = 3;
+	int32 sws = 4;
+}
+
+message ModuleList {
+	repeated Module modules = 1;
+}
