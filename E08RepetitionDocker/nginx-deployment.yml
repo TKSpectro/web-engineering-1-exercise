@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    creationTimestamp: '2020-01-24T10:54:56Z'
+    generation: 1
+    labels:
+        app: nginx
+    name: nginx-deployment
+    namespace: default
+    resourceVersion: '96574'
+    selfLink: /apis/apps/v1/namespaces/default/deployments/nginx-deployment
+    uid: e1075fa3-6468-43d0-83c0-63fede0dae51
+spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+        matchLabels:
+            app: nginx
+    strategy:
+        rollingUpdate:
+            maxSurge: 25%
+            maxUnavailable: 25%
+        type: RollingUpdate
+    template:
+        metadata:
+            creationTimestamp: null
+            labels:
+                app: nginx
+        spec:
+            containers:
+                - image: e08-docker:v1
+                  name: nginx
+                  ports:
+                      - containerPort: 80
+                        protocol: TCP
+                  resources: {}
+                  terminationMessagePath: /dev/termination-log
+                  terminationMessagePolicy: File
+                  imagePullPolicy: Never
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            terminationGracePeriodSeconds: 30
+status:
+    availableReplicas: 2
+    conditions:
+        - lastTransitionTime: '2020-01-24T10:54:59Z'
+          lastUpdateTime: '2020-01-24T10:54:59Z'
+          message: Deployment has minimum availability.
+          reason: MinimumReplicasAvailable
+          status: 'True'
+          type: Available
+        - lastTransitionTime: '2020-01-24T10:54:56Z'
+          lastUpdateTime: '2020-01-24T10:54:59Z'
+          message: ReplicaSet "nginx-deployment-7d64f4b574" has successfully progressed.
+          reason: NewReplicaSetAvailable
+          status: 'True'
+          type: Progressing
+    observedGeneration: 1
+    readyReplicas: 2
+    replicas: 2
+    updatedReplicas: 2
